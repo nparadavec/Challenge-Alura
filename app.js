@@ -1,1 +1,1 @@
-console.log("Ejecutamdo el Encriptador")
+console.log("Ejecutando el Encriptador")
