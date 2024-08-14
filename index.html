@@ -3,33 +3,114 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Encriptador</title>
+    <title>Encriptador de Texto</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-image: url("images/techback.jpeg");
+        }
+        .container {
+            background: #9ecdf8;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        textarea {
+            width: 100%;
+            height: 100px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 2px;
+        }
+        button {
+            background: #007BFF;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 30px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background: #e9ecef;
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <img src="/images/Logo.png" alt="Logo Alura">
-  </header> 
-  
-  <main>
-    <section>
-        <textarea id="inputText" placeholder="Introduce el texto aquí..."></textarea>
-        <div>
-            <h6 class="información">Solo letras minúsculas y sin acentos</h6>
-        </div>
+    <div class="container">
+        <h1>Encriptador y Desencriptador de Texto</h1>
+        <h2>-sólo letras minúscula y sin acentos-</h2>
+        <textarea id="inputText" placeholder="Ingrese el texto aquí..."></textarea>
+        <br>
+        <button onclick="encryptText()">Encriptar</button>
+        <button onclick="decryptText()">Desencriptar</button>
+        <button onclick="copyText()">Copiar</button>
+        <div class="result" id="outputText"></div>
+    </div>
 
-        <div class="botones">
-            <button class="bot-encriptar">Encriptar</button>
-            <button class="bot-desencriptar">Desencriptar</button>
-        </div>
+    <script>
+        // Función para encriptar el texto
+        function encryptText() {
+            // Obtener el texto del área de texto
+            let text = document.getElementById('inputText').value;
+            // Reemplazar las letras según las reglas de encriptación
+            let encryptedText = text.replace(/e/g, 'enter')
+                                    .replace(/i/g, 'imes')
+                                    .replace(/a/g, 'ai')
+                                    .replace(/o/g, 'ober')
+                                    .replace(/u/g, 'ufat');
+            // Mostrar el texto encriptado en la pantalla
+            document.getElementById('outputText').innerText = encryptedText;
+        }
 
-    </section>
+        // Función para desencriptar el texto
+        function decryptText() {
+            // Obtener el texto del área de texto
+            let text = document.getElementById('inputText').value;
+            // Reemplazar las letras encriptadas por las originales
+            let decryptedText = text.replace(/enter/g, 'e')
+                                    .replace(/imes/g, 'i')
+                                    .replace(/ai/g, 'a')
+                                    .replace(/ober/g, 'o')
+                                    .replace(/ufat/g, 'u');
+            // Mostrar el texto desencriptado en la pantalla
+            document.getElementById('outputText').innerText = decryptedText;
+        }
 
-    <section>
-        <textarea name="mensaje" cols="30" rows="10"></textarea>
-        <div>
-            <button class="copiar">copiar</button>
-        </div>
-    </section>
-  </main>
+        // Función para copiar el texto encriptado/desencriptado
+        function copyText() {
+            // Crear un campo de texto temporal
+            let tempInput = document.createElement('textarea');
+            // Obtener el texto encriptado/desencriptado
+            tempInput.value = document.getElementById('outputText').innerText;
+            // Añadir el campo temporal al documento
+            document.body.appendChild(tempInput);
+            // Seleccionar el contenido del campo temporal
+            tempInput.select();
+            // Copiar el texto seleccionado al portapapeles
+            document.execCommand('copy');
+            // Eliminar el campo temporal del documento
+            document.body.removeChild(tempInput);
+            // Notificar al usuario que el texto ha sido copiado
+            alert('Texto copiado al portapapeles');
+        }
+    </script>
+
+    
+<footer>
+    <h3>2024 - Néstor Parada Vanegas</h3>       
+</footer>
 </body>
 </html>
